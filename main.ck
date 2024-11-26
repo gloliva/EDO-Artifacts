@@ -1,5 +1,6 @@
 // Imports
 @import "tuning.ck"
+@import "transport.ck"
 @import "voice.ck"
 @import "voiceOneOrchestration.ck"
 @import "voiceTwoOrchestration.ck"
@@ -33,6 +34,9 @@ EDO edo19(19);
 // Coordination
 int voiceDone[3];
 
+Transport transport(120, 24);
+transport.initDac(6, 7);
+
 
 // Play Sequences
 fun void playVoice(Voice voice, Sequence seqs[], int voiceNum, int voiceDone[]) {
@@ -57,6 +61,9 @@ VoiceThreeOrchestration v3orch;
 
 
 // Go!!
+spork ~ transport.signalPulse();
+transport.turnOn();
+
 spork ~ playVoice(v1, v1orch.seqs, 0, voiceDone);
 spork ~ playVoice(v2, v2orch.seqs, 1, voiceDone);
 spork ~ playVoice(v3, v3orch.seqs, 2, voiceDone);

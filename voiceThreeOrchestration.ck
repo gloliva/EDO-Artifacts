@@ -73,9 +73,36 @@ public class VoiceThreeOrchestration {
                 new RestNote(250::ms),
                 new Note(26, 0, 1., 750::ms, 10::ms, 500::ms),
                 new RestNote(250::ms),
-                new Note(26, 0, 1., 750::ms, 10::ms, 500::ms),
+                new Note(26, 0, 1., 250::ms, 10::ms, 10::ms),
             ],
             1
+        );
+
+        Sequence seq2A(
+            [
+                new Note(20, -1, 1., 167::ms, 10::ms, 50::ms),
+                new Note(20, -1, 1., 166::ms, 10::ms, 50::ms),
+                new Note(20, -1, 1., 166::ms, 10::ms, 50::ms),
+            ],
+            12
+        );
+
+        Sequence seq2B(
+            [
+                new Note(28, -1, 1., 167::ms, 10::ms, 50::ms),
+                new Note(28, -1, 1., 166::ms, 10::ms, 50::ms),
+                new Note(28, -1, 1., 166::ms, 10::ms, 50::ms),
+            ],
+            2
+        );
+
+        Sequence seq2C(
+            [
+                new Note(39, -1, 1., 167::ms, 10::ms, 50::ms),
+                new Note(39, -1, 1., 166::ms, 10::ms, 50::ms),
+                new Note(39, -1, 1., 166::ms, 10::ms, 50::ms),
+            ],
+            2
         );
 
         [
@@ -85,6 +112,12 @@ public class VoiceThreeOrchestration {
             seq1B,
             seq1C,
             // Part 2
+            seq2A,
+            seq2B,
+            seq2C,
+            seq2A,
+            seq2B,
+            seq2C,
         ] @=> this.seqs;
     }
 }

@@ -37,7 +37,6 @@ public class VoiceTwoOrchestration {
                 new Note(5, 250::ms),
                 new Note(15, 250::ms),
                 new Note(23, 0, 1., 500::ms, 50::ms, 250::ms)
-                // new Note(33, 250::ms),
             ],
             2
         );
@@ -47,7 +46,6 @@ public class VoiceTwoOrchestration {
                 new Note(5, 250::ms),
                 new Note(12, 250::ms),
                 new Note(23, 0, 1., 500::ms, 50::ms, 250::ms)
-                // new Note(33, 250::ms),
             ],
             2
         );
@@ -55,10 +53,21 @@ public class VoiceTwoOrchestration {
         Sequence seq2A(
             [
                 new Note(20, 500::ms, 25::ms, 100::ms),
-                new Note(29, 500::ms, 25::ms, 100::ms),
-                new RestNote(1::second)
+                new Note(39, 500::ms, 25::ms, 100::ms),
+                new RestNote(1::second),
+                new Note(20, 334::ms, 25::ms, 25::ms),
+                new Note(29, 333::ms, 25::ms, 25::ms),
+                new Note(33, 333::ms, 25::ms, 25::ms),
+                new RestNote(1::second),
+                new Note(20, 500::ms, 25::ms, 100::ms),
+                new Note(39, 500::ms, 25::ms, 100::ms),
+                new RestNote(1::second),
+                new Note(33, 334::ms, 25::ms, 25::ms),
+                new Note(29, 333::ms, 25::ms, 25::ms),
+                new Note(20, 333::ms, 25::ms, 25::ms),
+                new RestNote(1::second),
             ],
-            4
+            1
         );
 
         Sequence seq2B(
@@ -76,9 +85,13 @@ public class VoiceTwoOrchestration {
                 new Note(24, 250::ms, 10::ms, 50::ms),
                 new Note(29, 250::ms, 10::ms, 50::ms),
                 new Note(15, 250::ms, 10::ms, 50::ms),
-                new Note(20, 250::ms, 10::ms, 50::ms)
+                new Note(20, 250::ms, 10::ms, 50::ms),
+                new Note(24, 250::ms, 10::ms, 50::ms),
+                new Note(29, 250::ms, 10::ms, 50::ms),
+                new Note(12, 250::ms, 10::ms, 50::ms),
+                new Note(22, 250::ms, 10::ms, 50::ms)
             ],
-            4
+            2
         );
 
         [
