@@ -64,7 +64,7 @@ spork ~ playVoice(v3, v3orch.seqs, 2, voiceDone);
 
 // Wait until all sequences have finished
 now => time start;
-while (voiceDone[0] == 0 || voiceDone[2] == 0) {
+while (voiceDone[0] == 0 || voiceDone[1] == 0 || voiceDone[2] == 0) {
     1::second => now;
 }
 now - start => dur end;

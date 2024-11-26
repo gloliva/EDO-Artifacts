@@ -22,13 +22,46 @@ public class VoiceOneOrchestration {
             1
         );
 
+        Sequence seq2A(
+            [
+                new Note(40, 2::second, 500::ms, 750::ms),
+                new Note(34, 2::second, 500::ms, 750::ms),
+                new Note(33, 2::second, 500::ms, 750::ms),
+                new Note(30, 2::second, 500::ms, 750::ms),
+            ],
+            2
+        );
+
+        Sequence seq2B(
+            [
+                new Note(20, -1, 1., 4::second, 250::ms, 250::ms),
+            ],
+            1
+        );
+
+        Sequence seq2C(
+            [
+                new Note(24, -1, 1., 4::second, 250::ms, 250::ms),
+            ],
+            1
+        );
+
         [
+            // Part 1
             seq1A,
             seq1A,
             seq1B,
             seq1A,
             seq1B,
             seq1A,
+            // Part 2
+            seq2A,
+            seq2B,
+            seq2B,
+            seq2C,
+            seq2B,
+            seq2C,
+            seq2B,
         ] @=> this.seqs;
     }
 }

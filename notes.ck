@@ -22,6 +22,10 @@ public class Note {
         Note(degree, octaveDiff, amp, beat, 0::ms, 0::ms);
     }
 
+    fun @construct(int degree, dur beat, dur attack, dur release) {
+        Note(degree, 0, 1., beat, attack, release);
+    }
+
     fun @construct(int degree, int octaveDiff, float amp, dur beat, dur attack, dur release) {
         degree => this.degree;
         octaveDiff => this.octaveDiff;

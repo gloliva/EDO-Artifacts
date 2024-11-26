@@ -79,10 +79,12 @@ public class VoiceThreeOrchestration {
         );
 
         [
+            // Part 1
             seqStartRest,
             seq1A,
             seq1B,
             seq1C,
+            // Part 2
         ] @=> this.seqs;
     }
 }
