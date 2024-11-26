@@ -11,18 +11,18 @@ public class Note {
     dur release;
 
     fun @construct(int degree, dur beat) {
-        Note(degree, 0, 1., beat, 100::ms, 100::ms);
+        Note(degree, 0, 1., beat, 0::ms, 0::ms);
     }
 
     fun @construct(int degree, int octaveDiff, dur beat) {
-        Note(degree, octaveDiff, 1., beat, 100::ms, 100::ms);
+        Note(degree, octaveDiff, 1., beat, 0::ms, 0::ms);
     }
 
     fun @construct(int degree, int octaveDiff, float amp, dur beat) {
-        Note(degree, octaveDiff, amp, beat, 100::ms, 100::ms);
+        Note(degree, octaveDiff, amp, beat, 0::ms, 0::ms);
     }
 
-    fun @construct(int degree, int octaveDiff, float amp, dur beat, dur attack, dur sustain) {
+    fun @construct(int degree, int octaveDiff, float amp, dur beat, dur attack, dur release) {
         degree => this.degree;
         octaveDiff => this.octaveDiff;
         amp => this.amp;
@@ -30,8 +30,15 @@ public class Note {
 
         // Envelope variables
         attack => this.attack;
-        sustain => this.sustain;
+        release => this.release;
         beat - attack - release => this.sustain;
+    }
+}
+
+
+public class RestNote extends Note {
+    fun @construct(dur beat) {
+        Note(0, 0, 0., beat);
     }
 }
 

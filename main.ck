@@ -1,6 +1,9 @@
 // Imports
 @import "tuning.ck"
 @import "voice.ck"
+@import "voiceOneOrchestration.ck"
+@import "voiceTwoOrchestration.ck"
+@import "voiceThreeOrchestration.ck"
 
 
 // Set up CV
@@ -19,128 +22,52 @@ for (int i; i < voiceCV.size(); i++) {
     envCV[i] => env[i] => dac.chan(i + voiceCV.size());
 }
 
+
 // Tuning
 EDO edo12(12);
 EDO edo31(31);
 EDO edo22(22);
+EDO edo19(19);
 
 
-fun void wait(Sequence seq) {
-    repeat (seq.repeats) {
-        seq.seqDur => now;
+// Coordination
+int voiceDone[3];
+
+
+// Play Sequences
+fun void playVoice(Voice voice, Sequence seqs[], int voiceNum, int voiceDone[]) {
+    for (Sequence seq : seqs) {
+        spork ~ voice.play(seq);
+        seq.repeats * seq.seqDur => now;
     }
+
+    1 => voiceDone[voiceNum];
 }
 
 
-fun void playVoice1() {
-    // Define voice
-    Voice voice(edo31, env[0], voiceCV, 0);
+// Define voices and sequences
+Voice v1(edo31, env[0], voiceCV, 0);
+VoiceOneOrchestration v1orch;
 
-    // Sequences
-    Sequence @ seq;
-    Note notes[];
+Voice v2(edo31, env[1], voiceCV, 1);
+VoiceTwoOrchestration v2orch;
 
-    // Starting Sequence 1
-    [
-        new Note(0, 0, 1., 24::second, 20::second, 1::second )
-    ] @=> notes;
-    new Sequence(notes, 1) @=> seq;
-    voice.setSequence(seq);
+Voice v3(edo31, env[2], voiceCV, 2);
+VoiceThreeOrchestration v3orch;
 
-    // Wait to start
-    8::second => now;
 
-    spork ~ voice.play();
+// Go!!
+spork ~ playVoice(v1, v1orch.seqs, 0, voiceDone);
+spork ~ playVoice(v2, v2orch.seqs, 1, voiceDone);
+spork ~ playVoice(v3, v3orch.seqs, 2, voiceDone);
 
-    wait(seq);
 
-    // Sequence 2
-    [
-        new Note(0, 2::second), new Note(18, 2::second),
-        new Note(0, 2::second), new Note(18, 2::second),
-        new Note(5, 2::second), new Note(23, 2::second),
-        new Note(0, 2::second), new Note(18, 2::second)
-    ] @=> notes;
-    new Sequence(notes, 1) @=> seq;
-    voice.setSequence(seq);
-
-    wait(seq);
-
-    // End
-    env[0].ramp(1::second, 0);
+// Wait until all sequences have finished
+now => time start;
+while (voiceDone[0] == 0 || voiceDone[2] == 0) {
+    1::second => now;
 }
+now - start => dur end;
 
-fun void playVoice2() {
-    [
-        new Note(0, 1::second), new Note(18, 1::second),
-        new Note(10, 500::ms), new Note(28, 500::ms), new Note(10, 500::ms), new Note(28, 250::ms), new Note(23, 250::ms)
-    ] @=> Note notes[];
-    Sequence seq(notes, 4);
-
-    Voice voice(edo31, env[1], voiceCV, 1);
-    voice.setSequence(seq);
-    spork ~ voice.play();
-
-    wait(seq);
-
-    // End
-    env[1].ramp(1::second, 0);
-}
-
-fun void playVoice3() {
-    // Define voice
-    Voice voice(edo31, env[2], voiceCV, 2);
-
-    // Sequences
-    Sequence @ seq;
-    Note notes[];
-
-
-    // Start sequence 1
-    [
-        new Note(0, 250::ms), new Note(10, 250::ms), new Note(18, 250::ms), new Note(28, 250::ms),
-        new Note(0, 250::ms), new Note(10, 250::ms), new Note(18, 250::ms), new Note(28, 250::ms),
-
-        new Note(0, 250::ms), new Note(10, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-        new Note(0, 250::ms), new Note(10, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-
-        new Note(0, 250::ms), new Note(9, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-        new Note(0, 250::ms), new Note(9, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-
-        new Note(0, 250::ms), new Note(8, 250::ms), new Note(18, 250::ms), new Note(23, 250::ms),
-        new Note(0, 250::ms), new Note(8, 250::ms), new Note(23, 250::ms), new Note(18, 250::ms)
-    ] @=> notes;
-    new Sequence(notes, 5) @=> seq;
-    voice.setSequence(seq);
-    spork ~ voice.play();
-
-    wait(seq);
-
-    // Sequence 2
-    [
-        new Note(5, 250::ms), new Note(15, 250::ms), new Note(23, 250::ms), new Note(33, 250::ms),
-        new Note(5, 250::ms), new Note(15, 250::ms), new Note(23, 250::ms), new Note(33, 250::ms),
-
-        new Note(5, 250::ms), new Note(15, 250::ms), new Note(23, 250::ms), new Note(32, 250::ms),
-        new Note(5, 250::ms), new Note(15, 250::ms), new Note(23, 250::ms), new Note(32, 250::ms),
-
-        new Note(0, 250::ms), new Note(9, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-        new Note(0, 250::ms), new Note(9, 250::ms), new Note(18, 250::ms), new Note(26, 250::ms),
-
-        new Note(0, 250::ms), new Note(8, 250::ms), new Note(18, 250::ms), new Note(23, 250::ms),
-        new Note(0, 250::ms), new Note(8, 250::ms), new Note(23, 250::ms), new Note(18, 250::ms)
-    ] @=> notes;
-    new Sequence(notes, 1) @=> seq;
-    voice.setSequence(seq);
-
-    wait(seq);
-
-    // End
-    env[2].ramp(1::second, 0);
-}
-
-spork ~ playVoice1();
-// spork ~ playVoice2();
-spork ~ playVoice3();
-
-5::minute => now;
+<<< "Length of piece: ", (end / 44100), "seconds." >>>;
+<<< "Goodbye :)" >>>;

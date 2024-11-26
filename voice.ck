@@ -21,27 +21,22 @@ public class Voice {
         voiceIdx => this.voiceIdx;
     }
 
-    fun void setSequence(Sequence seq) {
-        seq @=> this.seq;
-    }
-
     fun void setTuning(Tuning tuning) {
         tuning @=> this.tuning;
     }
 
-    fun void play() {
+    fun void play(Sequence seq) {
         0 => int step;
 
-        while (true) {
-            this.seq.get(step) @=> Note note;
-            tuning.cv(note.degree, note.octaveDiff) => float nextCV;
-            this.voiceCV[this.voiceIdx].next(nextCV);
+        repeat (seq.repeats) {
+            for (Note note : seq.notes) {
+                tuning.cv(note.degree, note.octaveDiff) => float nextCV;
+                this.voiceCV[this.voiceIdx].next(nextCV);
 
-            // Next step
-            (step + 1) % this.seq.size => step;
-            spork ~ triggerEnv(note);
-            note.beat => now;
-
+                // Next step
+                spork ~ triggerEnv(note);
+                note.beat => now;
+            }
         }
     }
 
