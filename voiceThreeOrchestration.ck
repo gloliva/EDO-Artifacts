@@ -2,10 +2,12 @@
 
 
 public class VoiceThreeOrchestration {
-    Sequence seqs[];
+    Scene scenes[];
 
     fun @construct() {
-        Sequence seqStartRest(
+        Sequence seq1[];
+
+        Sequence seq1Rest(
             [
                 new RestNote(500::ms)
             ],
@@ -73,7 +75,7 @@ public class VoiceThreeOrchestration {
                 new RestNote(250::ms),
                 new Note(26, 0, 1., 750::ms, 10::ms, 500::ms),
                 new RestNote(250::ms),
-                new Note(26, 0, 1., 250::ms, 10::ms, 10::ms),
+                new Note(26, 0, 1., 750::ms, 10::ms, 500::ms),
             ],
             1
         );
@@ -107,17 +109,23 @@ public class VoiceThreeOrchestration {
 
         [
             // Part 1
-            seqStartRest,
+            seq1Rest,
             seq1A,
             seq1B,
             seq1C,
             // Part 2
+            seq1Rest,
             seq2A,
             seq2B,
             seq2C,
             seq2A,
             seq2B,
             seq2C,
-        ] @=> this.seqs;
+        ] @=> seq1;
+
+        // Add to scenes
+        [
+            new Scene(seq1),
+        ] @=> this.scenes;
     }
 }

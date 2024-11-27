@@ -69,3 +69,12 @@ public class Sequence {
         return this.notes[idx];
     }
 }
+
+
+public class Scene {
+    Sequence seqs[];
+
+    fun @construct(Sequence seqs[]) {
+        seqs @=> this.seqs;
+    }
+}

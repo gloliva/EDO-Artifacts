@@ -2,9 +2,11 @@
 
 
 public class VoiceOneOrchestration {
-    Sequence seqs[];
+    Scene scenes[];
 
     fun @construct() {
+        Sequence seq1[];
+
         Sequence seq1A(
             [
                 new Note(0, -1, 2::second),
@@ -24,12 +26,16 @@ public class VoiceOneOrchestration {
 
         Sequence seq2A(
             [
-                new Note(40, 2::second, 750::ms, 750::ms),
-                new Note(34, 2::second, 750::ms, 750::ms),
-                new Note(34, 2::second, 750::ms, 750::ms),
-                new Note(30, 2::second, 750::ms, 750::ms),
+                new RestNote(1::second),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new RestNote(2::second)
             ],
-            2
+            4
         );
 
         Sequence seq2B(
@@ -62,6 +68,11 @@ public class VoiceOneOrchestration {
             seq2B,
             seq2C,
             seq2B,
-        ] @=> this.seqs;
+        ] @=> seq1;
+
+        // Add to scenes
+        [
+            new Scene(seq1),
+        ] @=> this.scenes;
     }
 }

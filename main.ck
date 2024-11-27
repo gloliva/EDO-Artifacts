@@ -25,10 +25,16 @@ for (int i; i < voiceCV.size(); i++) {
 
 
 // Tuning
-EDO edo12(12);
 EDO edo31(31);
-EDO edo22(22);
+EDO edo5(5);
+EDO edo12(12);
 EDO edo19(19);
+
+[
+    edo31,
+    edo5,
+    edo19,
+] @=> Tuning tunings[];
 
 
 // Coordination
@@ -39,10 +45,16 @@ transport.initDac(6, 7);
 
 
 // Play Sequences
-fun void playVoice(Voice voice, Sequence seqs[], int voiceNum, int voiceDone[]) {
-    for (Sequence seq : seqs) {
-        spork ~ voice.play(seq);
-        seq.repeats * seq.seqDur => now;
+fun void playVoice(Voice voice, Scene scenes[], int voiceNum, int voiceDone[]) {
+    for (int idx; idx < scenes.size(); idx++) {
+        scenes[idx] @=> Scene scene;
+        tunings[idx] @=> Tuning tuning;
+        voice.setTuning(tuning);
+
+        for (Sequence seq : scene.seqs) {
+            spork ~ voice.play(seq);
+            seq.repeats * seq.seqDur => now;
+        }
     }
 
     1 => voiceDone[voiceNum];
@@ -64,9 +76,9 @@ VoiceThreeOrchestration v3orch;
 spork ~ transport.signalPulse();
 transport.turnOn();
 
-spork ~ playVoice(v1, v1orch.seqs, 0, voiceDone);
-spork ~ playVoice(v2, v2orch.seqs, 1, voiceDone);
-spork ~ playVoice(v3, v3orch.seqs, 2, voiceDone);
+spork ~ playVoice(v1, v1orch.scenes, 0, voiceDone);
+spork ~ playVoice(v2, v2orch.scenes, 1, voiceDone);
+spork ~ playVoice(v3, v3orch.scenes, 2, voiceDone);
 
 
 // Wait until all sequences have finished

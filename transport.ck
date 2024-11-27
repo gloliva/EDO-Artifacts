@@ -45,9 +45,7 @@ public class Transport {
         }
 
         while (true) {
-            <<< "Pre", this.pulse.next() >>>;
             (1. - this.pulse.next()) => this.pulse.next;
-            <<< "Post", this.pulse.next() >>>;
             this.pulseDur / 2 => now;
         }
     }

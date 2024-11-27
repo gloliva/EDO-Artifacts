@@ -2,9 +2,11 @@
 
 
 public class VoiceTwoOrchestration {
-    Sequence seqs[];
+    Scene scenes[];
 
     fun @construct() {
+        Sequence seq1[];
+
         Sequence seq1A(
             [
                 new Note(0, 250::ms),
@@ -117,6 +119,11 @@ public class VoiceTwoOrchestration {
             seq2B,
             seq2C,
             seq2B,
-        ] @=> this.seqs;
+        ] @=> seq1;
+
+        // Add to scenes
+        [
+            new Scene(seq1),
+        ] @=> this.scenes;
     }
 }
