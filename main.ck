@@ -31,8 +31,8 @@ EDO edo12(12);
 EDO edo19(19);
 
 [
-    edo31,
     edo5,
+    edo31,
     edo19,
 ] @=> Tuning tunings[];
 
@@ -71,6 +71,11 @@ VoiceTwoOrchestration v2orch;
 
 Voice v3(edo31, env[2], voiceCV, 2);
 VoiceThreeOrchestration v3orch;
+
+
+v1orch.printDur();
+v2orch.printDur();
+v3orch.printDur();
 
 
 // Go!!

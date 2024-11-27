@@ -10,8 +10,8 @@ public class VoiceOneOrchestration {
 
         Sequence seq1A(
             [
-                new Note(0, -1, 2::second),
-                new Note(18, -1, 1., 2::second,  10::ms, 250::ms)
+                new Note(0, -1, 1., 2::second, 100::ms, 0::ms),
+                new Note(18, -1, 1., 2::second,  0::ms, 250::ms)
             ],
             1
         );
@@ -28,7 +28,7 @@ public class VoiceOneOrchestration {
         Sequence seq2A(
             [
                 new Note(20, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(20, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(20, -1, 1., 167::ms, 10::ms, 20::ms),
                 new Note(20, -1, 1., 166::ms, 10::ms, 20::ms),
             ],
             12
@@ -37,7 +37,7 @@ public class VoiceOneOrchestration {
         Sequence seq2B(
             [
                 new Note(28, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(28, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(28, -1, 1., 167::ms, 10::ms, 20::ms),
                 new Note(28, -1, 1., 166::ms, 10::ms, 20::ms),
             ],
             2
@@ -46,7 +46,7 @@ public class VoiceOneOrchestration {
         Sequence seq2C(
             [
                 new Note(39, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(39, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(39, -1, 1., 167::ms, 10::ms, 20::ms),
                 new Note(39, -1, 1., 166::ms, 10::ms, 20::ms),
             ],
             2
@@ -163,7 +163,7 @@ public class VoiceOneOrchestration {
                 new Note(0, 0, 1., 500::ms, 20::ms, 20::ms),
                 new RestNote(500::ms),
                 new Note(0, 0, 1., 500::ms, 20::ms, 20::ms),
-                new RestNote(1.5::second),
+                new RestNote(500::ms),
            ],
            1
         );
@@ -186,8 +186,22 @@ public class VoiceOneOrchestration {
 
         // Add to scenes
         [
-            new Scene(seq1),
             new Scene(seq2),
+            new Scene(seq1),
         ] @=> this.scenes;
+    }
+
+    fun void printDur() {
+        <<< "*** Voice One ***" >>>;
+        for (int idx; idx < this.scenes.size(); idx++) {
+            scenes[idx] @=> Scene scene;
+            0::ms => dur sceneLength;
+
+            for (Sequence seq : scene.seqs) {
+                (seq.seqDur * seq.repeats) + sceneLength => sceneLength;
+            }
+
+            <<< "Scene", idx, "duration: ", sceneLength / 44100. >>>;
+        }
     }
 }

@@ -10,45 +10,45 @@ public class VoiceTwoOrchestration {
 
         Sequence seq1A(
             [
-                new Note(0, 250::ms),
+                new Note(0, 0, 1., 250::ms, 50::ms, 0::ms),
                 new Note(10, 250::ms),
-                new Note(18, 0, 1., 500::ms, 50::ms, 250::ms),
+                new Note(18, 0, 1., 500::ms, 0::ms, 50::ms),
             ],
             2
         );
 
         Sequence seq1B(
             [
-                new Note(0, 250::ms),
+                new Note(0, 0, 1., 250::ms, 50::ms, 0::ms),
                 new Note(9, 250::ms),
-                new Note(18, 0, 1., 500::ms, 50::ms, 250::ms),
+                new Note(18, 0, 1., 500::ms, 50::ms, 50::ms),
             ],
             2
         );
 
         Sequence seq1C(
             [
-                new Note(0, 250::ms),
+                new Note(0, 0, 1., 250::ms, 50::ms, 0::ms),
                 new Note(8, 250::ms),
-                new Note(18, 0, 1., 500::ms, 50::ms, 250::ms),
+                new Note(18, 0, 1., 500::ms, 50::ms, 50::ms),
             ],
             2
         );
 
         Sequence seq1D(
             [
-                new Note(5, 250::ms),
+                new Note(5, 0, 1., 250::ms, 50::ms, 0::ms),
                 new Note(15, 250::ms),
-                new Note(23, 0, 1., 500::ms, 50::ms, 250::ms)
+                new Note(23, 0, 1., 500::ms, 50::ms, 50::ms)
             ],
             2
         );
 
         Sequence seq1E(
             [
-                new Note(5, 250::ms),
+                new Note(5, 0, 1., 250::ms, 50::ms, 0::ms),
                 new Note(12, 250::ms),
-                new Note(23, 0, 1., 500::ms, 50::ms, 250::ms)
+                new Note(23, 0, 1., 500::ms, 50::ms, 50::ms)
             ],
             2
         );
@@ -188,7 +188,7 @@ public class VoiceTwoOrchestration {
                 new Note(2, 0, 1., 500::ms, 20::ms, 20::ms),
                 new RestNote(500::ms),
                 new Note(2, 0, 1., 500::ms, 20::ms, 20::ms),
-                new RestNote(1.5::second),
+                new RestNote(500::ms),
            ],
            1
         );
@@ -205,8 +205,22 @@ public class VoiceTwoOrchestration {
 
         // Add to scenes
         [
-            new Scene(seq1),
             new Scene(seq2),
+            new Scene(seq1),
         ] @=> this.scenes;
+    }
+
+    fun void printDur() {
+        <<< "*** Voice Two ***" >>>;
+        for (int idx; idx < this.scenes.size(); idx++) {
+            scenes[idx] @=> Scene scene;
+            0::ms => dur sceneLength;
+
+            for (Sequence seq : scene.seqs) {
+                (seq.seqDur * seq.repeats) + sceneLength => sceneLength;
+            }
+
+            <<< "Scene", idx, "duration: ", sceneLength / 44100. >>>;
+        }
     }
 }
