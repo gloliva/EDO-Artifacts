@@ -5,6 +5,7 @@ public class VoiceTwoOrchestration {
     Scene scenes[];
 
     fun @construct() {
+        // Scene 1
         Sequence seq1[];
 
         Sequence seq1A(
@@ -96,6 +97,16 @@ public class VoiceTwoOrchestration {
             2
         );
 
+        Sequence seq2D(
+            [
+                new Note(24, 750::ms, 10::ms, 100::ms),
+                new Note(29, 250::ms, 10::ms, 100::ms),
+                new Note(15, 500::ms, 10::ms, 100::ms),
+                new Note(20, 1.5::second, 10::ms, 100::ms),
+            ],
+            1
+        );
+
         [
             // Part 1
             seq1A,
@@ -119,11 +130,83 @@ public class VoiceTwoOrchestration {
             seq2B,
             seq2C,
             seq2B,
+            // End
+            seq2D,
         ] @=> seq1;
+
+        // Scene 2
+        Sequence seq2[];
+
+        Sequence seq3A(
+           [
+                new Note(0, -1, 1., 20::second, 3::second, 500::ms),
+           ],
+           1
+        );
+
+        Sequence seq3B(
+           [
+                new Note(2, -1, 1., 8::second, 4::second, 0::ms)
+           ],
+           1
+        );
+
+        Sequence seq3C(
+           [
+                new Note(0, -1, 1., 8::second),
+           ],
+           1
+        );
+
+        Sequence seq3D(
+           [
+                new Note(2, -1, 1., 4::second),
+                new Note(4, -1, 1., 4::second),
+           ],
+           1
+        );
+
+        Sequence seq3E(
+           [
+                new Note(0, -1, 1., 4::second),
+                new Note(2, -2, 1., 4::second),
+           ],
+           1
+        );
+
+        Sequence seq3F(
+           [
+                new Note(0, -1, 1., 7::second, 0::second, 1::second),
+           ],
+           1
+        );
+
+        Sequence seq3G(
+           [
+                new Note(2, 0, 1., 500::ms, 20::ms, 20::ms),
+                new RestNote(500::ms),
+                new Note(2, 0, 1., 500::ms, 20::ms, 20::ms),
+                new RestNote(500::ms),
+                new Note(2, 0, 1., 500::ms, 20::ms, 20::ms),
+                new RestNote(1.5::second),
+           ],
+           1
+        );
+
+        [
+            seq3A,
+            seq3B,
+            seq3C,
+            seq3D,
+            seq3E,
+            seq3F,
+            seq3G,
+        ] @=> seq2;
 
         // Add to scenes
         [
             new Scene(seq1),
+            new Scene(seq2),
         ] @=> this.scenes;
     }
 }
