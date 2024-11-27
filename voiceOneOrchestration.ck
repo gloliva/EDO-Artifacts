@@ -26,26 +26,39 @@ public class VoiceOneOrchestration {
 
         Sequence seq2A(
             [
-                new RestNote(1::second),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 166::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 166::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
-                new RestNote(2::second)
+                new Note(20, -1, 1., 167::ms, 10::ms, 20::ms),
+                new Note(20, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(20, -1, 1., 166::ms, 10::ms, 20::ms),
             ],
-            4
+            12
         );
 
         Sequence seq2B(
+            [
+                new Note(28, -1, 1., 167::ms, 10::ms, 20::ms),
+                new Note(28, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(28, -1, 1., 166::ms, 10::ms, 20::ms),
+            ],
+            2
+        );
+
+        Sequence seq2C(
+            [
+                new Note(39, -1, 1., 167::ms, 10::ms, 20::ms),
+                new Note(39, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(39, -1, 1., 166::ms, 10::ms, 20::ms),
+            ],
+            2
+        );
+
+        Sequence seq2D(
             [
                 new Note(20, -1, 1., 4::second, 50::ms, 250::ms),
             ],
             1
         );
 
-        Sequence seq2C(
+        Sequence seq2E(
             [
                 new Note(24, -1, 1., 4::second, 50::ms, 250::ms),
             ],
@@ -63,11 +76,16 @@ public class VoiceOneOrchestration {
             // Part 2
             seq2A,
             seq2B,
+            seq2C,
+            seq2A,
             seq2B,
             seq2C,
-            seq2B,
-            seq2C,
-            seq2B,
+            seq2D,
+            seq2D,
+            seq2E,
+            seq2D,
+            seq2E,
+            seq2D,
         ] @=> seq1;
 
         // Add to scenes

@@ -7,7 +7,7 @@ public class VoiceThreeOrchestration {
     fun @construct() {
         Sequence seq1[];
 
-        Sequence seq1Rest(
+        Sequence seqRest(
             [
                 new RestNote(500::ms)
             ],
@@ -82,44 +82,70 @@ public class VoiceThreeOrchestration {
 
         Sequence seq2A(
             [
-                new Note(20, -1, 1., 167::ms, 10::ms, 50::ms),
-                new Note(20, -1, 1., 166::ms, 10::ms, 50::ms),
-                new Note(20, -1, 1., 166::ms, 10::ms, 50::ms),
+                new RestNote(500::ms),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new RestNote(2::second)
             ],
-            12
+            1
         );
 
         Sequence seq2B(
             [
-                new Note(28, -1, 1., 167::ms, 10::ms, 50::ms),
-                new Note(28, -1, 1., 166::ms, 10::ms, 50::ms),
-                new Note(28, -1, 1., 166::ms, 10::ms, 50::ms),
+                new RestNote(1::second),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new Note(38, 167::ms, 25::ms, 25::ms),
+                new Note(29, 166::ms, 25::ms, 25::ms),
+                new Note(33, 166::ms, 25::ms, 25::ms),
+                new RestNote(2::second)
             ],
-            2
+            3
         );
 
         Sequence seq2C(
             [
-                new Note(39, -1, 1., 167::ms, 10::ms, 50::ms),
-                new Note(39, -1, 1., 166::ms, 10::ms, 50::ms),
-                new Note(39, -1, 1., 166::ms, 10::ms, 50::ms),
+                new RestNote(250::ms),
+                new Note(20, -1, 1., 250::ms, 10::ms, 50::ms),
+                new RestNote(250::ms),
+                new Note(18, -1, 1., 250::ms, 10::ms, 50::ms)
+            ],
+            4
+        );
+
+        Sequence seq2D(
+            [
+                new RestNote(250::ms),
+                new Note(29, -1, 1., 250::ms, 10::ms, 50::ms),
+                new RestNote(250::ms),
+                new Note(22, -1, 1., 250::ms, 10::ms, 50::ms),
+                new RestNote(250::ms),
+                new Note(29, -1, 1., 250::ms, 10::ms, 50::ms),
+                new RestNote(250::ms),
+                new Note(20, -1, 1., 250::ms, 10::ms, 50::ms)
             ],
             2
         );
 
         [
             // Part 1
-            seq1Rest,
+            seqRest,
             seq1A,
             seq1B,
             seq1C,
             // Part 2
-            seq1Rest,
             seq2A,
             seq2B,
             seq2C,
-            seq2A,
-            seq2B,
+            seq2C,
+            seq2D,
+            seq2C,
+            seq2D,
             seq2C,
         ] @=> seq1;
 
