@@ -69,19 +69,19 @@ public class VoiceOneOrchestration {
         Sequence seq2F(
             [
                 new RestNote(1.5::second),
-                new Note(20, -1, 1., 1.5::second, 10::ms, 0.5::second),
+                new Note(20, -1, 1., 1.5::second, 10::ms, 1::second),
             ],
             1
         );
 
         [
             // Part 1
-            seq1A,
-            seq1A,
-            seq1B,
-            seq1A,
-            seq1B,
-            seq1A,
+            // seq1A,
+            // seq1A,
+            // seq1B,
+            // seq1A,
+            // seq1B,
+            // seq1A,
             // Part 2
             seq2A,
             seq2B,
@@ -89,6 +89,7 @@ public class VoiceOneOrchestration {
             seq2A,
             seq2B,
             seq2C,
+            // Part 3
             seq2D,
             seq2D,
             seq2E,
@@ -194,13 +195,32 @@ public class VoiceOneOrchestration {
             128
         );
 
+        Sequence seq4B(
+            [
+                new Note(0, -1, 1., 125::ms, 10::ms, 50::ms),
+            ],
+            64
+        );
+
         [
             // 1st part
-            seq4A
+            seq4A,
+            seq4A,
+            seq4B
         ] @=> seq3;
 
         // Scene 4
         Sequence seq4[];
+
+        Sequence seq5Pre(
+            [
+                new Note(0, -1, 1., 2::second, 1.5::second, 0::ms),
+                new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
+                new Note(0, -1, 1., 2::second, 100::ms, 0::ms),
+                new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
+            ],
+            1
+        );
 
         Sequence seq5A(
             [
@@ -235,6 +255,7 @@ public class VoiceOneOrchestration {
 
         [
             // 1st part
+            seq5Pre,
             seq5A,
             seq5A,
             seq5B,

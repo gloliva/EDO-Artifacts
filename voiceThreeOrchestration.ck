@@ -136,7 +136,7 @@ public class VoiceThreeOrchestration {
         Sequence seq2E(
             [
                 new RestNote(1.5::second),
-                new Note(28, 1.5::second, 10::ms, 0.5::second),
+                new Note(28, 1.5::second, 10::ms, 1::second),
             ],
             1
         );
@@ -144,9 +144,9 @@ public class VoiceThreeOrchestration {
         [
             // Part 1
             seqRest,
-            seq1A,
-            seq1B,
-            seq1C,
+            // seq1A,
+            // seq1B,
+            // seq1C,
             // Part 2
             seq2A,
             seq2B,
@@ -333,16 +333,119 @@ public class VoiceThreeOrchestration {
                 new Note(2, 0, 1., 250::ms, 10::ms, 140::ms),
                 new RestNote(250::ms),
             ],
-            32
+            16
+        );
+
+        Sequence seq4B(
+            [
+                new Note(2, 0, 1., 125::ms, 10::ms, 15::ms),
+                new RestNote(250::ms),
+                new Note(3, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(5, 0, 1., 125::ms, 10::ms, 15::ms),
+                new RestNote(250::ms),
+                new Note(2, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(2, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(5, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(7, 0, 1., 250::ms, 10::ms, 15::ms),
+                new RestNote(500::ms),
+                new Note(5, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(2, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(3, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(0, 0, 1., 125::ms, 10::ms, 15::ms),
+                new RestNote(125::ms),
+                new Note(6, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(1, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(0, 0, 1., 125::ms, 10::ms, 15::ms),
+                new RestNote(250::ms),
+                new Note(2, 0, 1., 250::ms, 10::ms, 15::ms),
+                new Note(7, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(4, 0, 1., 125::ms, 10::ms, 15::ms),
+                new RestNote(250::ms),
+            ],
+            1
+        );
+
+        Sequence seq4C(
+            [
+                new Note(5, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(2, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(7, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(3, 0, 1., 125::ms, 10::ms, 15::ms),
+            ],
+            8
+        );
+
+        Sequence seq4D(
+            [
+                new Note(5, 1, 1., 125::ms, 10::ms, 15::ms),
+                new Note(2, 1, 1., 125::ms, 10::ms, 15::ms),
+                new Note(6, 0, 1., 125::ms, 10::ms, 15::ms),
+                new Note(2, 1, 1., 125::ms, 10::ms, 15::ms),
+            ],
+            8
+        );
+
+        Sequence seq4E(
+            [
+                new Note(2, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(2, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(4, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(4, 0, 1., 62.5::ms, 10::ms, 10::ms),
+            ],
+            8
+        );
+
+        Sequence seq4F(
+            [
+                new Note(2, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(2, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(3, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(3, 0, 1., 62.5::ms, 10::ms, 10::ms),
+            ],
+            8
+        );
+
+        Sequence seq4G(
+            [
+                new Note(0, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(0, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(0, 0, 1., 62.5::ms, 10::ms, 10::ms),
+                new Note(0, 0, 1., 62.5::ms, 10::ms, 10::ms),
+            ],
+            16
         );
 
         [
             // 1st part
-            seq4A
+            seq4A,
+            seq4B,
+            seq4B,
+            seq4B,
+            seq4B,
+            seq4C,
+            seq4C,
+            seq4D,
+            seq4C,
+            seq4E,
+            seq4F,
+            seq4B,
+            seq4E,
+            seq4F,
+            seq4B,
+            seq4F,
+            seq4F,
+            seq4G,
         ] @=> seq3;
 
         // Scene 4
         Sequence seq4[];
+
+        Sequence seq5Pre(
+            [
+                new RestNote(8::second),
+            ],
+            1
+        );
 
         Sequence seq5A(
             [
@@ -474,6 +577,7 @@ public class VoiceThreeOrchestration {
 
         [
             // 1st part
+            seq5Pre,
             seq5A,
             seq5B,
             seq5C,
