@@ -209,35 +209,18 @@ public class VoiceTwoOrchestration {
         Sequence seq4A(
             [
                 new RestNote(250::ms),
-                new Note(15, 0, 1., 125::ms, 10::ms, 10::ms),
-                new Note(15, 0, 1., 125::ms, 10::ms, 10::ms),
-                new RestNote(250::ms),
-                new Note(13, 0, 1., 125::ms, 10::ms, 10::ms),
-                new Note(13, 0, 1., 125::ms, 10::ms, 10::ms),
-                new RestNote(250::ms),
-                new Note(11, 0, 1., 125::ms, 10::ms, 10::ms),
-                new Note(11, 0, 1., 125::ms, 10::ms, 10::ms),
+                new Note(7, 0, 1., 250::ms, 10::ms, 140::ms),
             ],
-            8
+            64
         );
 
-        Sequence seq4B(
-            [
-                new Note(11, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(11, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(11, 0, 1., 0.5::second, 50::ms, 50::ms),
-            ],
-            1
-        );
+        [
+            // 1st part
+            seq4A
+        ] @=> seq3;
 
-        Sequence seq4C(
-            [
-                new Note(17, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(16, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(16, 0, 1., 0.5::second, 50::ms, 50::ms),
-            ],
-            1
-        );
+        // Scene 4
+        Sequence seq4[];
 
         Sequence seq5A(
             [
@@ -277,19 +260,14 @@ public class VoiceTwoOrchestration {
             seq5C,
             seq5C,
             seq5D,
-            // 2nd part
-            // seq4A,
-            // seq4B,
-            // seq4A,
-            // seq4C,
-            // seq4C,
-        ] @=> seq3;
+        ] @=> seq4;
 
         // Add to scenes
         [
             new Scene(seq2),
-            new Scene(seq1),
             new Scene(seq3),
+            new Scene(seq1),
+            new Scene(seq4),
         ] @=> this.scenes;
     }
 

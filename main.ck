@@ -25,12 +25,14 @@ for (int i; i < voiceCV.size(); i++) {
 
 
 // Tuning
-EDO edo31(31);
 EDO edo5(5);
+EDO edo31(31);
+EDO edo7(7);
 EDO edo19(19);
 
 [
     edo5,
+    edo7,
     edo31,
     edo19,
 ] @=> Tuning tunings[];

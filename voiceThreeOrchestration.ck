@@ -324,95 +324,25 @@ public class VoiceThreeOrchestration {
             seq3G,
         ] @=> seq2;
 
-        // Scene 3
+        // Scene 4
         Sequence seq3[];
 
         Sequence seq4A(
             [
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
+                new RestNote(500::ms),
+                new Note(2, 0, 1., 250::ms, 10::ms, 140::ms),
+                new RestNote(250::ms),
             ],
-            16
+            32
         );
 
-        Sequence seq4B(
-            [
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(17, 1, 1., 125::ms, 25::ms, 25::ms),
+        [
+            // 1st part
+            seq4A
+        ] @=> seq3;
 
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(15, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-                new Note(11, 1, 1., 125::ms, 25::ms, 25::ms),
-            ],
-            1
-        );
-
-        Sequence seq4C(
-            [
-                new Note(11, 1, 1., 50::ms, 25::ms, 0::ms),
-                new Note(12, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(10, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(12, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(10, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(12, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(10, 1, 1., 50::ms, 0::ms, 0::ms),
-                new Note(11, 1, 1., 50::ms, 0::ms, 25::ms),
-            ],
-            2
-        );
-
-        Sequence seq4D(
-            [
-                new Note(13, 1, 1., 125::ms, 25::ms, 25::ms),
-            ],
-            16
-        );
-
-        Sequence seq4E(
-            [
-                new RestNote(500::ms)
-            ],
-            1
-        );
+        // Scene 4
+        Sequence seq4[];
 
         Sequence seq5A(
             [
@@ -557,29 +487,14 @@ public class VoiceThreeOrchestration {
             seq5D,
             seq5D,
             seq5F,
-            // 2nd part
-            // seq4A,
-            // seq4A,
-            // seq4B,
-            // seq4A,
-            // seq4A,
-            // seq4C,
-            // seq4D,
-            // seq4A,
-            // seq4B,
-            // seq4D,
-            // seq4A,
-            // seq4C,
-            // seq4E,
-            // seq4E,
-            // seq4E,
-        ] @=> seq3;
+        ] @=> seq4;
 
         // Add to scenes
         [
             new Scene(seq2),
-            new Scene(seq1),
             new Scene(seq3),
+            new Scene(seq1),
+            new Scene(seq4),
         ] @=> this.scenes;
     }
 

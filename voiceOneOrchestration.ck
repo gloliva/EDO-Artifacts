@@ -189,36 +189,18 @@ public class VoiceOneOrchestration {
 
         Sequence seq4A(
             [
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(10, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(8, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(5, 0, 1., 250::ms, 25::ms, 25::ms),
+                new Note(0, -1, 1., 250::ms, 10::ms, 140::ms),
             ],
-            8
+            128
         );
 
-        Sequence seq4B(
-            [
-                new Note(0, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(0, 0, 1., 0.5::second, 50::ms, 50::ms),
-                new Note(0, 0, 1., 0.5::second, 50::ms, 50::ms),
-            ],
-            1
-        );
+        [
+            // 1st part
+            seq4A
+        ] @=> seq3;
 
-        Sequence seq4C(
-            [
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(11, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(9, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(0, 0, 1., 250::ms, 25::ms, 25::ms),
-                new Note(6, 0, 1., 250::ms, 25::ms, 25::ms),
-            ],
-            8
-        );
+        // Scene 4
+        Sequence seq4[];
 
         Sequence seq5A(
             [
@@ -260,19 +242,14 @@ public class VoiceOneOrchestration {
             seq5C,
             seq5C,
             seq5D,
-            // 2nd part
-            // seq4A,
-            // seq4B,
-            // seq4C,
-            // seq4B,
-            // seq4B,
-        ] @=> seq3;
+        ] @=> seq4;
 
         // Add to scenes
         [
             new Scene(seq2),
-            new Scene(seq1),
             new Scene(seq3),
+            new Scene(seq1),
+            new Scene(seq4),
         ] @=> this.scenes;
     }
 
