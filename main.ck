@@ -27,7 +27,6 @@ for (int i; i < voiceCV.size(); i++) {
 // Tuning
 EDO edo31(31);
 EDO edo5(5);
-EDO edo12(12);
 EDO edo19(19);
 
 [
@@ -47,7 +46,7 @@ transport.initDac(6, 7);
 // Play Sequences
 fun void playVoice(Voice voice, Scene scenes[], int voiceNum, int voiceDone[]) {
     for (int idx; idx < scenes.size(); idx++) {
-        <<< "Scene #", idx >>>;
+        <<< "Voice", voiceNum, "Scene #", idx >>>;
         scenes[idx] @=> Scene scene;
         tunings[idx] @=> Tuning tuning;
         voice.setTuning(tuning);
