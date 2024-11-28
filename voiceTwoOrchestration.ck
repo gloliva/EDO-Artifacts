@@ -242,9 +242,16 @@ public class VoiceTwoOrchestration {
         // Scene 4
         Sequence seq4[];
 
+        Sequence seq5APre(
+            [
+                new Note(16, -1, 1., 16::second, 2::second, 0::second),
+            ],
+            1
+        );
+
         Sequence seq5A(
             [
-                new Note(16, -1, 1., 72::second, 1.5::second, 1::second),
+                new Note(16, -1, 1., 64::second, 0::second, 1::second),
             ],
             1
         );
@@ -274,6 +281,7 @@ public class VoiceTwoOrchestration {
 
         [
             // 1st part
+            seq5APre,
             seq5A,
             seq5B,
             seq5B,

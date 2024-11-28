@@ -128,11 +128,14 @@ public class VoiceOneOrchestration {
 
         Sequence seq3C(
            [
-                new Note(2, 1, 1., 334::ms, 10::ms, 10::ms),
-                new Note(0, 1, 1., 333::ms, 10::ms, 10::ms),
-                new Note(3, 1, 1., 333::ms, 10::ms, 10::ms),
+                new Note(2, 1, 0.8, 1.5::second, 10::ms, 100::ms),
+                new Note(3, 1, 0.8, 0.5::second, 10::ms, 100::ms),
+                new Note(2, 1, 0.8, 750::ms, 10::ms, 100::ms),
+                new RestNote(250::ms),
+                new Note(0, 1, 1., 0.5::second, 10::ms, 100::ms),
+                new Note(2, 1, 1., 0.5::second, 10::ms, 100::ms),
            ],
-           4
+           1
         );
 
         Sequence seq3D(
@@ -140,6 +143,15 @@ public class VoiceOneOrchestration {
                 new Note(0, 1, 1., 334::ms, 10::ms, 10::ms),
                 new Note(4, 0, 1., 333::ms, 10::ms, 10::ms),
                 new Note(1, 1, 1., 333::ms, 10::ms, 10::ms),
+           ],
+           4
+        );
+
+        Sequence seq3D2(
+           [
+                new Note(0, 1, 1., 334::ms, 10::ms, 10::ms),
+                new Note(4, 0, 1., 333::ms, 10::ms, 10::ms),
+                new Note(2, 0, 1., 333::ms, 10::ms, 10::ms),
            ],
            4
         );
@@ -152,7 +164,7 @@ public class VoiceOneOrchestration {
                 new Note(5, 0, 1., 0.5::second, 10::ms, 100::ms),
                 new Note(2, 0, 1., 1.5::second, 10::ms, 100::ms),
                 new Note(5, 0, 1., 0.5::second, 10::ms, 100::ms),
-                new Note(2, 0, 1., 1::second, 10::ms, 0.5::second),
+                new Note(2, 0, 1., 1::second, 10::ms, 100::ms),
            ],
            1
         );
@@ -180,7 +192,7 @@ public class VoiceOneOrchestration {
             seq3Rest,
             seq3C,
             seq3D,
-            seq3D,
+            seq3D2,
             seq3E,
             seq3f,
         ] @=> seq2;
@@ -215,6 +227,10 @@ public class VoiceOneOrchestration {
         Sequence seq5Pre(
             [
                 new Note(0, -1, 1., 2::second, 1.5::second, 0::ms),
+                new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
+                new Note(0, -1, 1., 2::second, 100::ms, 0::ms),
+                new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
+                new Note(0, -1, 1., 2::second, 100::ms, 0::ms),
                 new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
                 new Note(0, -1, 1., 2::second, 100::ms, 0::ms),
                 new Note(9, -1, 1., 2::second, 0::ms, 100::ms),
