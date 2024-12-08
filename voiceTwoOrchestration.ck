@@ -376,7 +376,23 @@ public class VoiceTwoOrchestration {
 
         Sequence seq7Rest(
             [
-                new RestNote(4::second),
+                new RestNote(2::second),
+
+            ],
+            1
+        );
+
+        Sequence seq7D(
+            [
+                new Note(0, -2, 1., 2::second, 10::ms, 0.5::second),
+
+            ],
+            1
+        );
+
+        Sequence seq7E(
+            [
+                new Note(9, -3, 1., 2::second, 10::ms, 0.5::second),
 
             ],
             1
@@ -384,23 +400,23 @@ public class VoiceTwoOrchestration {
 
         [
             // 1st part
-            // seq6A,
-            // seq6A,
-            // seq6A,
-            // seq6A,
-            // seq6B,
-            // seq6B,
-            // seq6A,
-            // seq6A,
+            seq6A,
+            seq6A,
+            seq6A,
+            seq6A,
+            seq6B,
+            seq6B,
+            seq6A,
+            seq6A,
 
-            // seq6C,
-            // seq6C,
-            // seq6D,
-            // seq6D,
-            // seq6C,
-            // seq6C,
-            // seq6A,
-            // seq6A,
+            seq6C,
+            seq6C,
+            seq6D,
+            seq6D,
+            seq6C,
+            seq6C,
+            seq6A,
+            seq6A,
 
             seq7A,
             seq7A,
@@ -411,7 +427,16 @@ public class VoiceTwoOrchestration {
             seq7C,
             seq7C,
             seq7C,
+            seq7C,
+
             seq7Rest,
+            seq7D,
+            seq7Rest,
+            seq7D,
+            seq7Rest,
+            seq7E,
+            seq7Rest,
+            seq7E,
         ] @=> seq5;
 
         // Add to scenes
