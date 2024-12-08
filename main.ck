@@ -28,14 +28,21 @@ for (int i; i < voiceCV.size(); i++) {
 EDO edo5(5);
 EDO edo31(31);
 EDO edo7(7);
+EDO edo15(15);
 EDO edo19(19);
 
 [
     edo5,
     edo7,
     edo31,
+    edo15,
     edo19,
 ] @=> Tuning tunings[];
+
+
+[
+    -1, 0, 1, 2, 4
+] @=> int SCENE_SKIP_LIST[];
 
 
 // Coordination
@@ -48,6 +55,11 @@ transport.initDac(6, 7);
 // Play Sequences
 fun void playVoice(Voice voice, Scene scenes[], int voiceNum, int voiceDone[]) {
     for (int idx; idx < scenes.size(); idx++) {
+        if (checkSceneSkip(idx, SCENE_SKIP_LIST)) {
+            <<< "Skipping scene:", idx >>>;
+            continue;
+        }
+
         <<< "Voice", voiceNum, "Scene #", idx >>>;
         scenes[idx] @=> Scene scene;
         tunings[idx] @=> Tuning tuning;
@@ -60,6 +72,17 @@ fun void playVoice(Voice voice, Scene scenes[], int voiceNum, int voiceDone[]) {
     }
 
     1 => voiceDone[voiceNum];
+}
+
+
+// Helper functions
+fun int checkSceneSkip(int currScene, int skipList[]) {
+    0 => int skipScene;
+    for (int sceneToSkip : skipList) {
+        if (currScene == sceneToSkip) 1 => skipScene;
+    }
+
+    return skipScene;
 }
 
 

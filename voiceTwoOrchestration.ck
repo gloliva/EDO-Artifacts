@@ -290,11 +290,136 @@ public class VoiceTwoOrchestration {
             seq5D,
         ] @=> seq4;
 
+        // Scene 5
+        Sequence seq5[];
+
+        Sequence seq6A(
+            [
+                new Note(0, -1, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -1, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -1, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -1, 1., 125::ms, 10::ms, 10::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq6B(
+            [
+                new Note(9, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(9, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(9, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(9, -2, 1., 125::ms, 10::ms, 10::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq6C(
+            [
+                new Note(7, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(7, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(7, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(7, -2, 1., 125::ms, 10::ms, 10::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq6D(
+            [
+                new Note(12, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(12, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(12, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(12, -2, 1., 125::ms, 10::ms, 10::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq6E(
+            [
+                new Note(0, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -2, 1., 125::ms, 10::ms, 10::ms),
+                new Note(0, -2, 1., 125::ms, 10::ms, 10::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq7A(
+            [
+                new Note(0, -2, 1., 500::ms, 10::ms, 90::ms),
+                new RestNote(500::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq7B(
+            [
+                new Note(3, -2, 1., 500::ms, 10::ms, 90::ms),
+                new RestNote(500::ms),
+
+            ],
+            4
+        );
+
+        Sequence seq7C(
+            [
+                new Note(0, -2, 1., 4::second, 10::ms, 1::second),
+
+            ],
+            4
+        );
+
+        Sequence seq7Rest(
+            [
+                new RestNote(4::second),
+
+            ],
+            1
+        );
+
+        [
+            // 1st part
+            // seq6A,
+            // seq6A,
+            // seq6A,
+            // seq6A,
+            // seq6B,
+            // seq6B,
+            // seq6A,
+            // seq6A,
+
+            // seq6C,
+            // seq6C,
+            // seq6D,
+            // seq6D,
+            // seq6C,
+            // seq6C,
+            // seq6A,
+            // seq6A,
+
+            seq7A,
+            seq7A,
+            seq7B,
+            seq7A,
+
+            seq7C,
+            seq7C,
+            seq7C,
+            seq7C,
+            seq7Rest,
+        ] @=> seq5;
+
         // Add to scenes
         [
             new Scene(seq2),
             new Scene(seq3),
             new Scene(seq1),
+            new Scene(seq5),
             new Scene(seq4),
         ] @=> this.scenes;
     }

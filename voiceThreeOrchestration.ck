@@ -606,11 +606,300 @@ public class VoiceThreeOrchestration {
             seq5F,
         ] @=> seq4;
 
+        // Scene 5
+        Sequence seq5[];
+
+        Sequence seq6A(
+            [
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+            ],
+            4
+        );
+
+        Sequence seq6B(
+            [
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+
+                new Note(5, 0, 1., 125::ms, 5::ms, 5::ms),
+                new Note(5, 0, 1., 125::ms, 5::ms, 5::ms),
+                new Note(5, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(5, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(5, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(5, 0, 1., 62.5::ms, 5::ms, 5::ms),
+            ],
+            1
+        );
+
+        Sequence seq6C(
+            [
+                new Note(6, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(6, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(6, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+
+                new Note(6, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+                new Note(9, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+            ],
+            1
+        );
+
+        Sequence seq6D(
+            [
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(750::ms),
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+                new RestNote(250::ms),
+
+                new Note(5, 0, 1., 250::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 250::ms, 5::ms, 5::ms),
+
+                new Note(0, 0, 1., 125::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 125::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 62.5::ms, 5::ms, 5::ms),
+                new Note(0, 0, 1., 62.5::ms, 5::ms, 5::ms),
+            ],
+            1
+        );
+
+        Sequence seq7A(
+            [
+                new Note(0, 0, 1., 1000::ms, 5::ms, 750::ms),
+                new RestNote(2.5::second),
+                new Note(5, 0, 1., 167::ms, 5::ms, 10::ms),
+                new Note(5, 0, 1., 166::ms, 5::ms, 10::ms),
+                new Note(5, 0, 1., 167::ms, 5::ms, 10::ms),
+            ],
+            1
+        );
+
+        Sequence seq7B(
+            [
+                new Note(3, 0, 1., 1000::ms, 5::ms, 750::ms),
+                new RestNote(1::second),
+                new Note(5, 0, 1., 500::ms, 5::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 5::ms, 100::ms),
+                new Note(5, 0, 1., 500::ms, 5::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 5::ms, 100::ms),
+            ],
+            1
+        );
+
+        // Sequence seq7A(
+        //     [
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(9, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(9, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(9, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(5, 0, 1., 222::ms, 21::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(0, 0, 1., 667::ms, 20::ms, 100::ms),
+        //         new Note(0, 0, 1., 666::ms, 20::ms, 100::ms),
+        //     ],
+        //     2
+        // );
+
+        Sequence seq7Rest(
+            [
+                new RestNote(4::second)
+            ],
+            1
+        );
+
+        Sequence seq7C(
+            [
+                new Note(0, 0, 1., 1::second, 20::ms, 250::ms),
+                new RestNote(1::second),
+                new Note(0, 0, 1., 1::second, 20::ms, 250::ms),
+                new RestNote(1::second),
+            ],
+            1
+        );
+
+        Sequence seq7D(
+            [
+                new Note(0, 0, 1., 1::second, 20::ms, 250::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 1::second, 20::ms, 250::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+            ],
+            1
+        );
+
+        Sequence seq7E(
+            [
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+            ],
+            16
+        );
+
+        Sequence seq7F(
+            [
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 500::ms, 20::ms, 100::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 250::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 222::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 166::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 166::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+                new Note(0, 0, 1., 167::ms, 20::ms, 20::ms),
+            ],
+            1
+        );
+
+        Sequence seq7G(
+            [
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+            ],
+            16
+        );
+
+        Sequence seq7H(
+            [
+                new Note(0, 0, 1., 62.5::ms, 5.25::ms, 5.25::ms),
+            ],
+            64
+        );
+
+        Sequence seq7I(
+            [
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 125::ms, 25::ms, 25::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 250::ms, 25::ms, 125::ms),
+                new Note(0, 0, 1., 500::ms, 25::ms, 250::ms),
+                new Note(0, 0, 1., 500::ms, 25::ms, 250::ms),
+                new Note(0, 0, 1., 500::ms, 25::ms, 250::ms),
+                new Note(0, 0, 1., 500::ms, 25::ms, 250::ms),
+                new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
+                new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
+                new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
+                new RestNote(1::second),
+                new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
+            ],
+            1
+        );
+
+        [
+            // 1st part
+            // seq6A,
+            // seq6A,
+            // seq6B,
+            // seq6A,
+            // seq6C,
+            // seq6D,
+            // seq6C,
+            // seq6A,
+
+            seq7A,
+            seq7A,
+            seq7B,
+            seq7A,
+
+            seq7Rest,
+            seq7Rest,
+            seq7C,
+            seq7C,
+            seq7C,
+            seq7C,
+            seq7D,
+            seq7D,
+            seq7D,
+            seq7E,
+            seq7F,
+            seq7G,
+            seq7G,
+            seq7H,
+            seq7H,
+            seq7H,
+
+            // seq7A,
+            // seq7B,
+            // seq7C,
+            // seq7C,
+            // seq7C,
+            // seq7D,
+            // seq7D,
+            // seq7D,
+            // seq7D,
+            // seq7C,
+            // seq7C,
+            // seq7E,
+        ] @=> seq5;
+
         // Add to scenes
         [
             new Scene(seq2),
             new Scene(seq3),
             new Scene(seq1),
+            new Scene(seq5),
             new Scene(seq4),
         ] @=> this.scenes;
     }
