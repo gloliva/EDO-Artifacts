@@ -149,7 +149,7 @@ public class VoiceThreeOrchestration {
         Sequence seq2E(
             [
                 new RestNote(1.5::second),
-                new Note(28, 1.5::second, 10::ms, 1::second),
+                new Note(28, 1.5::second, 10::ms, 0.5::second),
             ],
             1
         );
@@ -855,6 +855,8 @@ public class VoiceThreeOrchestration {
                 new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
                 new Note(0, 0, 1., 1::second, 25::ms, 750::ms),
                 new Note(0, 0, 1., 0.5::second, 25::ms, 125::ms),
+                new Note(0, 0, 1., 0.5::second, 25::ms, 125::ms),
+                new RestNote(0.5::second);
                 new Note(0, 0, 1., 0.5::second, 25::ms, 125::ms),
             ],
             1

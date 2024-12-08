@@ -69,7 +69,7 @@ public class VoiceOneOrchestration {
         Sequence seq2F(
             [
                 new RestNote(1.5::second),
-                new Note(20, -1, 1., 1.5::second, 10::ms, 1::second),
+                new Note(20, -1, 1., 1.5::second, 10::ms, 0.5::second),
             ],
             1
         );

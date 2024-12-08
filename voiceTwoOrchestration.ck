@@ -102,7 +102,7 @@ public class VoiceTwoOrchestration {
                 new Note(24, 750::ms, 10::ms, 100::ms),
                 new Note(29, 250::ms, 10::ms, 100::ms),
                 new Note(15, 500::ms, 10::ms, 100::ms),
-                new Note(20, 1.5::second, 10::ms, 1::second),
+                new Note(20, 1.5::second, 10::ms, 0.5::second),
             ],
             1
         );
