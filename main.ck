@@ -43,6 +43,7 @@ EDO edo19(19);
 [
     // 0,
     // 1,
+    // 2,
     4,
 ] @=> int SCENE_SKIP_LIST[];
 
