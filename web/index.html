@@ -1,0 +1,150 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script> <!-- Use C for now -->
+
+<style>
+    body {
+        background: url('files/EurorackBackground.jpg') no-repeat center center fixed;
+        background-size: cover; /* Makes sure the image covers the entire background */
+        margin: 0; /* Remove default margin */
+        padding: 0;
+    }
+
+    .container {
+        width: 75%; /* Restrict width to 75% of the viewport */
+        margin: 50px auto; /* Center the container horizontally and add some vertical spacing */
+        padding: 40px; /* Add padding inside the container */
+        box-sizing: border-box; /* Include padding in the total width */
+        border: 4px solid black; /* Add black border around the container */
+        background-color: rgba(255, 255, 255, 0.9); /* Add slight transparency to make the content readable */
+        border-radius: 8px; /* Optional: Add rounded corners for aesthetics */
+    }
+
+    .code-block-container {
+        display: flex;
+        justify-content: center; /* Center the code block horizontally */
+    }
+
+    .code-block {
+        border: 2px solid black;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f4f4f4;
+        font-family: monospace;
+        width: 50%; /* Set code block to half the width of the container */
+    }
+
+    audio {
+        display: block;
+        margin: 20px auto; /* Center the audio player */
+        /* filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(99%); */
+        filter: contrast(99%) invert(99%);
+    }
+
+    img {
+        display: block;
+        margin: 20px auto; /* Center the image */
+        width: 50%; /* Make the image half the width of its container */
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
+
+    h4 {
+        font-size: 23px;
+    }
+
+    p, a {
+        font-size: 20px; /* Increase font size for paragraphs and links */
+        line-height: 1.2; /* Add line height for better readability */
+    }
+
+    .timestamps {
+        font-size: 14px; /* Smaller font size */
+        line-height: 1.1; /* Reduce line spacing */
+        margin-top: 5px; /* Reduce top margin */
+        margin-bottom: 5px; /* Reduce bottom margin */
+    }
+
+    code {
+        font-size: 18px; /* Increase font size for inline code */
+    }
+</style>
+
+<div class="container">
+    <h1 style="text-align: center;">ChucK-Driven Eurorack</h1>
+    <h2 style="text-align: center;">Music 220A Final Project</h2>
+    <p>&nbsp;</p>
+
+    <p style="text-align: center; font-size: 20px; margin-bottom: 4px;">
+        Listen to a recording of the piece!
+    </p>
+
+    <p>
+        <audio controls>
+            <source src="files/Music220AFinal.wav">
+        </audio>
+    </p>
+
+    <h3>Details</h3>
+    <p>This project uses Chuck to sequence Eurorack voices and explore multiple EDO tuning systems.</p>
+    <p>Modular synthesizers are composed of individual modules that serve some function and are "patched together" with cables to control the flow of data and audio (both of which are controlled by voltage). Below is a picture of my synth used for this performance:</p>
+    <p>
+        <img src="files/Eurorack.jpg" alt="Description of the Eurorack">
+    </p>
+    <p>Modules serve a functionality similar to Chuck UGens (oscillator, filter, gain, reverb, etc.), and patching them together is like UGen chaining (<code>UGen1 =&gt; UGen2</code>).</p>
+    <p>Sequencing voices in a modular synthesizer is tricky and can involve large and expensive modules, and may not offer much flexibility. Programming languages, however, are extremely flexible, and that's where Chuck comes in!</p>
+    <h3>How it Works</h3>
+    <p>This project utilizes the <a href="https://www.expert-sleepers.co.uk/es8.html" target="_blank">Expert Sleepers ES-8</a> module as a bridge between sequenced notes in Chuck and Eurorack oscillator modules. The ES-8 module acts as an audio interface between a computer and the Eurorack by translating floats into CV (e.g. a float value of 0.5 translates to ~5V, -0.3 translates to -3V, etc.). This can be achieved by using a <code>Step</code> UGen to send a constant float value to the DAC.</p>
+    <p>Below is a short example of how this works for three channels:</p>
+    <div class="code-block-container">
+        <pre class="code-block">
+            <code class="language-c">
+Step cv[3];
+
+// Send CV to output
+for (int i; i < cv.size(); i++) {
+    cv[i] => dac.chan(i);
+}
+
+cv[0].next(-0.5);
+cv[1].next(0.5);
+cv[2].next(0.8);
+
+repeat( 5 )
+{
+    // advance time
+    1::second => now;
+}
+            </code>
+        </pre>
+    </div>
+    <p>This code sets the first channel to -0.5, the second channel to 0.5, and the third channel to 0.8 for 5 seconds. This will output -5V, 5V, and 8V from the first, second, and third outputs of the ES-8 module, respectively. Since everything in the Eurorack is voltage-controlled, I use Chuck to write melodies, convert the frequencies into floats that the modules can understand, and send them to the DAC via Step UGens.</p>
+    <p>My Eurorack setup has 3 dedicated voices, so for this project, I use 3 Step Ugens for changing the frequency of each voice (Channels 1-3), 3 Step Ugens to envelope the amplitude of each voice (Channels 4-6), and then 2 Step Ugens for sending tempo variables to a <a href="https://busycircuits.com/alm034/" target="_blank">Pamela's Pro Workout Clocking Module</a> (Channels 7-8 for sending a Run state and input Clock signal).</p>
+
+    <h3>Tuning</h3>
+    <p>The most common tuning used in the West, and the one we're all familiar with, is <a href="https://en.wikipedia.org/wiki/12_equal_temperament" target="_blank">12-TET</a>, but that is just the tip of the iceberg. An easy way to get started with other tunings is by exploring other <a href="https://en.xen.wiki/w/EDO">EDOs</a> (equal division of the octave). Instead of dividing the octave into 12 equally-spaced notes, any other number can be used, with common divisions being 17, 19, 22, 24, 29, 31, and 53.&nbsp;</p>
+    <p>This piece has four sections each with its own tuning:</p>
+
+    <div class="timestamps">
+        <p style="margin: 0; font-size: 16;">00:00 - EDO5</p>
+        <p style="margin: 0; font-size: 16;">01:02 - EDO7</p>
+        <p style="margin: 0; font-size: 16;">02:14 - EDO31</p>
+        <p style="margin: 0; font-size: 16;">03:21 - EDO15</p>
+    </div>
+
+    <p>Making music in other tunings is particularly easy with programmatic music since you can directly set the frequency of the voices.</p>
+
+    <h3>Code</h3>
+    <p>View the code on <a href="https://github.com/gloliva/Music220A-Final" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p>&nbsp;</p>
+</div>
