@@ -27,27 +27,27 @@ public class VoiceOneOrchestration {
 
         Sequence seq2A(
             [
-                new Note(20, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(20, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(20, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(20, -2, 1., 167::ms, 10::ms, 20::ms),
+                new Note(20, -2, 0.5, 167::ms, 10::ms, 20::ms),
+                new Note(20, -2, 0.7, 166::ms, 10::ms, 20::ms),
             ],
             12
         );
 
         Sequence seq2B(
             [
-                new Note(28, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(28, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(28, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(28, -2, 1., 167::ms, 10::ms, 20::ms),
+                new Note(28, -2, 0.5, 167::ms, 10::ms, 20::ms),
+                new Note(28, -2, 0.8, 166::ms, 10::ms, 20::ms),
             ],
             2
         );
 
         Sequence seq2C(
             [
-                new Note(39, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(39, -1, 1., 167::ms, 10::ms, 20::ms),
-                new Note(39, -1, 1., 166::ms, 10::ms, 20::ms),
+                new Note(23, -2, 1., 167::ms, 10::ms, 20::ms),
+                new Note(23, -2, 0.6, 167::ms, 10::ms, 20::ms),
+                new Note(23, -2, 1., 166::ms, 10::ms, 20::ms),
             ],
             2
         );
@@ -130,10 +130,10 @@ public class VoiceOneOrchestration {
            [
                 new Note(2, 1, 0.8, 1.5::second, 10::ms, 100::ms),
                 new Note(3, 1, 0.8, 0.5::second, 10::ms, 100::ms),
-                new Note(2, 1, 0.8, 750::ms, 10::ms, 100::ms),
+                new Note(2, 1, 0.8, 750::ms, 10::ms, 20::ms),
                 new RestNote(250::ms),
-                new Note(0, 1, 1., 0.5::second, 10::ms, 100::ms),
                 new Note(2, 1, 1., 0.5::second, 10::ms, 100::ms),
+                new Note(0, 1, 1., 0.5::second, 10::ms, 100::ms),
            ],
            1
         );

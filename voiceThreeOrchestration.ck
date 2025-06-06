@@ -85,12 +85,12 @@ public class VoiceThreeOrchestration {
         Sequence seq2A(
             [
                 new RestNote(500::ms),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 167::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 167::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
+                new Note(38, 1, 1., 167::ms, 25::ms, 25::ms),
+                new Note(29, 1, 0.6, 167::ms, 25::ms, 25::ms),
+                new Note(33, 1, 0.85, 166::ms, 25::ms, 25::ms),
+                new Note(38, 1, 1., 167::ms, 25::ms, 25::ms),
+                new Note(29, 1, 0.7, 167::ms, 25::ms, 25::ms),
+                new Note(33, 1, 0.9, 166::ms, 25::ms, 25::ms),
                 new RestNote(2::second)
             ],
             1
@@ -99,12 +99,12 @@ public class VoiceThreeOrchestration {
         Sequence seq2B(
             [
                 new RestNote(1::second),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 167::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
-                new Note(38, 167::ms, 25::ms, 25::ms),
-                new Note(29, 167::ms, 25::ms, 25::ms),
-                new Note(33, 166::ms, 25::ms, 25::ms),
+                new Note(38, 1, 1., 167::ms, 25::ms, 25::ms),
+                new Note(29, 1, 0.6, 167::ms, 25::ms, 25::ms),
+                new Note(33, 1, 0.85, 166::ms, 25::ms, 25::ms),
+                new Note(38, 1, 1., 167::ms, 25::ms, 25::ms),
+                new Note(29, 1, 0.7, 167::ms, 25::ms, 25::ms),
+                new Note(33, 1, 0.9, 166::ms, 25::ms, 25::ms),
                 new RestNote(2::second)
             ],
             3
