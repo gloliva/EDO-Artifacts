@@ -100,7 +100,7 @@ public class VoiceTwoOrchestration {
         Sequence seq2D(
             [
                 new Note(24, -2, 1., 750::ms, 10::ms, 100::ms),
-                new Note(29, -2, 1., 250::ms, 10::ms, 100::ms),
+                new Note(29, -2, 0.8, 250::ms, 10::ms, 100::ms),
                 new Note(15, -2, 1., 500::ms, 10::ms, 100::ms),
                 new Note(20, -1, 1., 1.5::second, 10::ms, 0.5::second),
             ],

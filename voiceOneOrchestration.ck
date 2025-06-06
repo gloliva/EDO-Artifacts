@@ -37,7 +37,7 @@ public class VoiceOneOrchestration {
         Sequence seq2B(
             [
                 new Note(28, -2, 1., 167::ms, 10::ms, 20::ms),
-                new Note(28, -2, 0.5, 167::ms, 10::ms, 20::ms),
+                new Note(23, -2, 0.5, 167::ms, 10::ms, 20::ms),
                 new Note(28, -2, 0.8, 166::ms, 10::ms, 20::ms),
             ],
             2
@@ -68,7 +68,9 @@ public class VoiceOneOrchestration {
 
         Sequence seq2F(
             [
-                new RestNote(1.5::second),
+                new Note(24, 0, 1., 750::ms, 10::ms, 100::ms),
+                new Note(29, 0, 0.8, 250::ms, 10::ms, 100::ms),
+                new Note(15, 0, 1., 500::ms, 10::ms, 100::ms),
                 new Note(20, -1, 1., 1.5::second, 10::ms, 0.5::second),
             ],
             1
